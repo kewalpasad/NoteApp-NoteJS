@@ -53,8 +53,14 @@ yargs.command({
 yargs.command({
 	command: 'read',
 	description: 'Read a Note',
-	handler() {
-		console.log(chalk.blue.inverse('Reading the Note'));
+	builder: {
+		title: {
+			demandOption: true,
+			type: 'string'
+		}
+	},
+	handler(argv) {
+		notes.readNote(argv.title);
 	}
 });
 yargs.parse();
